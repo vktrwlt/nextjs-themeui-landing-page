@@ -1,0 +1,109 @@
+{
+  "parser": "babel-eslint",
+  "plugins": ["jest-dom", "import", "jsx-a11y", "prettier"],
+  "extends": [
+    "next",
+    "plugin:jest-dom/recommended",
+    "plugin:tailwind/recommended",
+    "plugin:jsx-a11y/recommended"
+  ],
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true,
+    "node": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    },
+    "import/resolver": {
+      "alias": {
+        "map": [["~/*", "./src/"]]
+      }
+    }
+  },
+  "overrides": [
+    {
+      "files": ["**/*.jest.js", "**/*.test.js"],
+      "env": {
+        "jest": true // now **/*.jest.js files' env has both es6 *and* jest
+      },
+      "rules": { "no-unused-vars": "off" }
+    },
+    {
+      "files": ["src/pages/_*.js"],
+      "rules": {
+        "react/prop-types": 0
+      }
+    },
+    {
+      "files": ["**/*.stories.js"],
+      "rules": {
+        "import/no-anonymous-default-export": "off"
+      }
+    }
+  ],
+  "rules": {
+    "react/react-in-jsx-scope": "off", // Next.js doesn't require react to be in scope
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
+    "react/jsx-filename-extension": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "error",
+    "react/jsx-props-no-spreading": "off",
+    "object-curly-newline": "off",
+    "semi": ["error", "always"],
+    "import/no-absolute-path": [2],
+    "import/no-unresolved": [2],
+    "no-unused-vars": ["warn", { "varsIgnorePattern": "tw" }],
+    "import/no-useless-path-segments": [
+      "error",
+      {
+        "noUselessIndex": true
+      }
+    ],
+    "import/newline-after-import": ["warn", { "count": 1 }],
+    "import/order": [
+      "warn",
+      {
+        "groups": [
+          "builtin",
+          ["external", "internal"],
+          "parent",
+          ["sibling", "index"]
+        ],
+        "pathGroups": [
+          {
+            "pattern": "react",
+            "group": "external",
+            "position": "before"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["react"],
+        "newlines-between": "never",
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ],
+    // next-js rules
+    "jsx-a11y/anchor-is-valid": [
+      "error",
+      {
+        "components": ["Link"],
+        "specialLink": ["hrefLeft", "hrefRight"],
+        "aspects": ["invalidHref", "preferButton"]
+      }
+    ]
+  },
+  // next-js rule
+  "globals": { "React": "writable" }
+}
