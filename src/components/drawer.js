@@ -17,7 +17,7 @@ export default function Drawer({
   ...props
 }) {
   return (
-    <>
+    <Fragment>
       <RcDrawer
         open={open}
         onClose={toggleHandler}
@@ -29,7 +29,7 @@ export default function Drawer({
         duration={'0.4s'}
         {...props}>
         {closeButton && (
-          <Box as='div' onClick={toggleHandler} sx={closeBtnStyle}>
+          <Box as='div' sx={closeBtnStyle} onClick={toggleHandler}>
             {closeButton}
           </Box>
         )}
@@ -41,7 +41,7 @@ export default function Drawer({
         onClick={toggleHandler}>
         {drawerHandler}
       </Box>
-    </>
+    </Fragment>
   );
 }
 
