@@ -76,7 +76,7 @@ export default function ServiceSection() {
                 <Image src={item.imgSrc} alt={item.altText} sx={styles.icon} />
                 <Box sx={styles.wrapper}>
                   <Heading sx={styles.wrapper.title}>{item.title}</Heading>
-                  <Text sx={styles.wrapper.subTutle}>{item.text}</Text>
+                  <Text sx={styles.wrapper.subTitle}>{item.text}</Text>
                 </Box>
               </Box>
             ))}
