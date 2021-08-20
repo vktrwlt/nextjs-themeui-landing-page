@@ -14,38 +14,53 @@ const data = [
     imgSrc: Performance,
     altText: 'Fast Performance',
     title: 'Fast Performance',
-    text:
-      'Get your blood tests delivered at home collect a sample from the your blood tests.',
+    text: 'Get your blood tests delivered at home collect a sample from the your blood tests.',
   },
   {
     id: 2,
     imgSrc: Partnership,
     altText: 'Partnership deal',
     title: 'Partnership deal',
-    text:
-      'Get your blood tests delivered at home collect a sample from the your blood tests.',
+    text: 'Get your blood tests delivered at home collect a sample from the your blood tests.',
   },
   {
     id: 3,
     imgSrc: Subscription,
     altText: 'Pro Subscription',
     title: 'Pro Subscription',
-    text:
-      'Get your blood tests delivered at home collect a sample from the your blood tests.',
+    text: 'Get your blood tests delivered at home collect a sample from the your blood tests.',
   },
   {
     id: 4,
     imgSrc: Support,
     altText: 'Customer Support',
     title: 'Customer Support',
-    text:
-      'Get your blood tests delivered at home collect a sample from the your blood tests.',
+    text: 'Get your blood tests delivered at home collect a sample from the your blood tests.',
   },
 ];
 
 export default function KeyFeature() {
   return (
-   <h1>Key Feature</h1>
+    <section sx={{ variant: 'section.keyFeature' }} id='feature'>
+      <Container>
+        <SectionHeader
+          slogan='Whats the functon'
+          title='Meet the feature of our product'
+        />
+
+        <Grid sx={styles.grid}>
+          {data.map(item => (
+            <FeatureCardColumn
+              key={item.id}
+              src={item.imgSrc}
+              alt={item.altText}
+              title={item.title}
+              text={item.text}
+            />
+          ))}
+        </Grid>
+      </Container>
+    </section>
   );
 }
 

@@ -1,6 +1,15 @@
 import React, { useState } from 'react';
 /** @jsx jsx */
-import { jsx, Container, Box, Grid, Text, Heading, Button, Image } from 'theme-ui';
+import {
+  jsx,
+  Container,
+  Box,
+  Grid,
+  Text,
+  Heading,
+  Button,
+  Image,
+} from 'theme-ui';
 import { keyframes } from '@emotion/core';
 import TextFeature from 'components/text-feature';
 import ModalVideo from 'react-modal-video';
@@ -21,23 +30,66 @@ const data = {
       imgSrc: Smart,
       altText: 'Smart Features',
       title: 'Smart Features',
-      text:
-        'Get your blood tests delivered at let home collect sample from the victory of the managements. your blood tests.',
+      text: 'Get your blood tests delivered at let home collect sample from the victory of the managements. your blood tests.',
     },
     {
       id: 2,
       imgSrc: Secure,
       altText: 'Secure Contents',
       title: 'Secure Contents',
-      text:
-        'Get your blood tests delivered at let home collect sample from the victory of the managements. your blood tests.',
+      text: 'Get your blood tests delivered at let home collect sample from the victory of the managements. your blood tests.',
     },
   ],
 };
 
 export default function ServiceSection() {
+  const [videoOpen, setVideoOpen] = useState(false);
+
+  const handleClick = e => {
+    e.preventDefault();
+    setVideoOpen(true);
+  };
+
   return (
-    <h1>Service Section</h1>
+    <section sx={{ variant: 'section.services' }}>
+      <Container sx={styles.containerBox}>
+        <Box sx={styles.thumbnail}>
+          <Image src={ServiceThumb} alt='Thumbnail' />
+          <Button
+            sx={styles.videoBtn}
+            onClick={handleClick}
+            aria-label='Play Button'>
+            <span>
+              <IoIosPlay />
+            </span>
+          </Button>
+          <Box sx={styles.shapeBox}>
+            <Image src={shapePattern} alt='Shape' />
+          </Box>
+        </Box>
+        <Box sx={styles.contentBox}>
+          <TextFeature subTitle={data.subTitle} title={data.title} />
+
+          <Grid sx={styles.grid}>
+            {data.features.map(item => (
+              <Box sx={styles.card} key={item.id}>
+                <Image src={item.imgSrc} alt={item.altText} sx={styles.icon} />
+                <Box sx={styles.wrapper}>
+                  <Heading sx={styles.wrapper.title}>{item.title}</Heading>
+                  <Text sx={styles.wrapper.subTutle}>{item.text}</Text>
+                </Box>
+              </Box>
+            ))}
+          </Grid>
+        </Box>
+      </Container>
+      <ModalVideo
+        channel='youtube'
+        isOpen={videoOpen}
+        videoId='dQw4w9WgXcQ'
+        onClose={() => setVideoOpen(false)}
+      />
+    </section>
   );
 }
 
